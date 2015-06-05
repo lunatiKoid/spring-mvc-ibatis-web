@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/biz.db/src/main/java/com/leeon/biz/db/module" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/biz.db/src/main/resources/spring_db_mapper_config.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/biz.db/src/main/resources/spring_services_locator.xml" charset="GBK" />
+  </component>
+</project>

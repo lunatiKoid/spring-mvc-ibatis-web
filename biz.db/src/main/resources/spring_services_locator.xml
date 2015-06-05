@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ================================================================================================ -->
+    <!-- 閰嶇疆锛屼娇鐢╯pring鍘诲垵濮嬪寲鎯宠鍔犺浇鐨刡ean锛屼富瑕佹槸鏁版嵁搴撶殑鎿嶄綔 -->
+    <bean id="connectionFactory" class="com.leeon.biz.db.module.factory.ConnectionFactory" init-method="init">
+        <property name="dbMapperConfigLocation" value="spring_db_mapper_config.xml"/>
+    </bean>
+
+    <bean id="userDao" class="com.leeon.biz.db.module.dao.impl.UserDaoImpl" init-method="init"
+          destroy-method="destroy">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+
+    <bean id="userService" class="com.leeon.biz.db.module.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <!-- ================================================================================================ -->
+
+</beans>

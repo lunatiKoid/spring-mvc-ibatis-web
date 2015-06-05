@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DB_USER">
+    <!--<typeAlias type="com.leeon.biz.db.module.dataobject.UserDO" alias="UserDO"/>-->
+    <select id="findUserByName" resultType="com.leeon.biz.db.module.dataobject.UserDO" parameterType="string">
+        SELECT id,name,age FROM user WHERE name=#{name}
+    </select>
+    <select id="findUserById" resultType="com.leeon.biz.db.module.dataobject.UserDO" parameterType="string">
+        SELECT id,name,age FROM user WHERE id=#{id}
+    </select>
+    <select id="findMaxId" resultType="int">
+        SELECT MAX(ID) FROM user
+    </select>
+    <insert id="insertUser" parameterType="com.leeon.biz.db.module.dataobject.UserDO">
+        INSERT into user (id,name,age) values (#{id},#{name},#{age})
+    </insert>
+</mapper>
