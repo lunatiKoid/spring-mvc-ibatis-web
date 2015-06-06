@@ -3,11 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DB_USER">
+
     <!--<typeAlias type="com.leeon.biz.db.module.dataobject.UserDO" alias="UserDO"/>-->
-    <select id="findUserByName" resultType="com.leeon.biz.db.module.dataobject.UserDO" parameterType="string">
+    <resultMap id="UserDOResult" type="com.leeon.biz.db.module.dataobject.UserDO" >
+        <result column="id" property="id" javaType="int"/>
+        <result column="name" property="name" javaType="String"/>
+        <result column="age" property="age" javaType="int"/>
+    </resultMap>
+
+    <select id="listUsersByName" resultMap="UserDOResult" parameterType="string">
         SELECT id,name,age FROM user WHERE name=#{name}
     </select>
-    <select id="findUserById" resultType="com.leeon.biz.db.module.dataobject.UserDO" parameterType="string">
+
+    <select id="findUserByName" resultMap="UserDOResult" parameterType="string">
+        SELECT id,name,age FROM user WHERE name=#{name}
+    </select>
+    <select id="findUserById" resultMap="UserDOResult" parameterType="string">
         SELECT id,name,age FROM user WHERE id=#{id}
     </select>
     <select id="findMaxId" resultType="int">

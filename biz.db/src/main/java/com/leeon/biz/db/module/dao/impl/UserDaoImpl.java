@@ -5,6 +5,8 @@ import com.leeon.biz.db.module.dataobject.UserDO;
 import com.leeon.biz.db.module.factory.ConnectionFactory;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 /**
  * Created by liang on 4/27/15.
  */
@@ -25,12 +27,14 @@ public class UserDaoImpl implements UserDao {
         sqlSession.close();
     }
 
-    @Override
+    public List<UserDO> listUsersByName(String name) {
+        return sqlSession.selectList("DB_USER.listUsersByName", name);
+    }
+
     public Integer findMaxId() {
         return (Integer) sqlSession.selectOne("DB_USER.findMaxId");
     }
 
-    @Override
     public UserDO findUserByName(String name) {
         return (UserDO) sqlSession.selectOne("DB_USER.findUserByName", name);
     }
@@ -40,7 +44,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     public int insertUser(UserDO userDO) {
-        int ret = (Integer) sqlSession.insert("DB_USER.insertUser", userDO);
+        int ret = sqlSession.insert("DB_USER.insertUser", userDO);
         sqlSession.commit();
         return ret;
     }
