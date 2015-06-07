@@ -15,7 +15,16 @@ public class UserDaoImplTest {
 
     @Test
     public void testFindMaxId() throws Exception {
-        assertEquals(112, UserServicesLocator.getUserService().findMaxId());
+        assertEquals(1000, UserServicesLocator.getUserService().findMaxId());
+    }
+
+    @Test
+    public void testInsert() throws Exception {
+        UserDO userDO = new UserDO();
+        userDO.setId(1000);
+        userDO.setName("who");
+        userDO.setAge(1000);
+        assertNotNull(UserServicesLocator.getUserService().insertUser(userDO));
     }
 
     @Test
